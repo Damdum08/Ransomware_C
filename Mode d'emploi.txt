@@ -1,0 +1,100 @@
+FRENCH : 
+
+Bonjour, 
+
+Voici le mode d'emploi afin d'utiliser notre ransomware.
+Il vous faut 2 machines Kali en réseau interne.(UNIQUEMENT SI GCC ET OPENSSL SONT ACTIVÉS) 
+Sinon restez en NAT, installez ,màj et revenez en interne)
+
+Sur chacune, le compilateur gcc et openssl doivent être activés
+
+apt-get install gcc
+apt-get install openssl
+
+Tout d'abord : 
+- mettre l'adresse IP de la VM "Victime" sur 192.168.1.10/24
+- mettre l'adresse IP de la VM "Attaquant" sur 192.168.1.1/24
+
+Placez le code nommé "victime" sur la VM ayant l'adresse 192.168.1.10/24. 
+Faites en sorte d'avoir le dossier /home qui contient un dossier /test où seront les fichiers à chiffrer.
+
+Dans un terminal :
+Veuillez le compiler avec : gcc -o victime victime.c -lcrypto
+
+
+Placez le code  nommé "attaquant" sur la VM ayant l'adresse 192.168.1.1/24.
+
+Veuillez le compiler avec : gcc -o attaquant attaquant.c
+
+
+Pour lancer le programme : 
+
+Ayez les 2 VM en routes l'une à coté de l'autre.
+
+!!! Attention vous n'avez que 15 secondes pour faire les manipulations (large),
+Sinon toutes les données seront chiffrées.
+
+Faites ./victime dans le terminal de la VM victime en premier lieu. 
+Le code va chiffrer le répertoire 
+
+
+EN MEME TEMPS, faites ./attaquant dans le terminal de la VM attaquant.
+Il va vous posez la question si un paiement a été fait, vous devez absolument répondre 1 pour dire OUI dans les 15 secondes après avoir lancé le programme ./victime.
+La machine victime sera sur écoute durant 15 secondes, si à la fin vous n'avez pas répondu, il sera difficile de récupérer vos données, mais pas impossible.
+
+Attendez la fin des 15 secondes, et vous verrez que les fichiers seront déchiffrés.
+
+
+Merci.
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+ENGLISH : 
+
+Hello,
+
+Here's how to use our ransomware.
+You need 2 Kali machines in internal network. (ONLY IF GCC AND OPENSSL ARE ENABLED)
+Otherwise stay in NAT, install , update and come back internally)
+
+On each, the gcc compiler and openssl must be enabled
+
+apt-get install gcc
+apt-get install openssl
+
+First of all :
+- set the IP address of the "Victim" VM to 192.168.1.10/24
+- set the IP address of the "Attacker" VM to 192.168.1.1/24
+
+Place the code named "victim" on the VM having the address 192.168.1.10/24.
+Make sure to have the /home folder which contains a /test folder where the files to be encrypted will be.
+
+In a terminal:
+Please compile it with: gcc -o victim victim.c -lcrypto
+
+
+Place the code named "attacker" on the VM having the address 192.168.1.1/24.
+
+Please compile it with: gcc -o attacker attacker.c
+
+
+To start the program:
+
+Have the 2 VMs running next to each other.
+
+!!! Be careful you only have 15 seconds to do the manipulations (large),
+Otherwise all data will be encrypted.
+
+Do ./victim in the terminal of the victim VM first.
+The code will encrypt the directory
+
+
+AT THE SAME TIME, do ./attacker in the terminal of the attacking VM.
+It will ask you the question if a payment has been made, you must absolutely answer 1 to say YES within 15 seconds after launching the ./victim program.
+The victim machine will be tapped for 15 seconds, if at the end you have not answered, it will be difficult to recover your data, but not impossible.
+
+Wait for the 15 seconds to finish, and you will see that the files will be decrypted.
+
+
+Thank you.
+
